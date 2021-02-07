@@ -1,0 +1,112 @@
+\documentclass{beamer}
+
+\begin{document}
+
+\begin{frame}{A title}
+  Some content.
+\end{frame}
+
+% Same effect:
+\begin{frame}
+  \frametitle{A title}
+  Some content.
+\end{frame}
+
+\begin{frame}<beamer>{Outline}  % frame is only shown in beamer mode
+  \tableofcontents[current]
+\end{frame}
+
+\begin{frame}[<+->]
+  \begin{theorem}
+    $A = B$.
+  \end{theorem}
+  \begin{proof}
+    \begin{itemize}
+    \item Clearly, $A = C$.
+    \item As shown earlier, $C = B$.
+    \item<3-> Thus $A = B$.
+    \end{itemize}
+  \end{proof}
+\end{frame}
+
+
+%% Option 'allowframebreaks'
+
+\begin{frame}[allowframebreaks]{References}
+  \begin{thebibliography}{XX}
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Vandewoestyne} Paper van Vandewoestyne
+  \bibitem{Cools} Paper van Cools
+  \bibitem{De Gersem} Paper van De Gersem
+  \end{thebibliography}
+\end{frame}
+
+\begin{frame}[allowframebreaks,allowdisplaybreaks]{A Long Equation}
+  \begin{align}
+    \zeta(2) &= 1 + 1/4 + 1/9 + \cdots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    &= \ldots \\
+    \ldots
+    &= \pi^2/6.
+  \end{align}
+\end{frame}
+
+% Option 'plain'
+
+\begin{frame}[plain]
+  \begin{centering}%
+    \pgfimage[height=\paperheight]{somebigimagefile}%
+    \par%
+  \end{centering}%
+\end{frame}
+
+% TODO
+%\setbeamertemplate{title page}
+%{
+%  \pgfuseimage{toptitle}
+%  \vskip0pt plus 1fill
+%
+%  \begin{centering}
+%    {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle}
+%
+%    \insertdate
+%  \end{centering}
+%
+%  \vskip0pt plus 1fill
+%  \pgfuseimage{bottomtitle}
+%}
+%\begin{frame}[plain]
+%  \titlepage
+%\end{frame}
+%}
+
+% Option 'shrink' (BAD STYLE!!!)
+
+\begin{frame}[shrink=5]
+  Some evil endless slide that is 5\% too large.
+\end{frame}
+
+% Option 'squeeze' (BAD STYLE!!!)
+
+% TODO
+
+\end{document}

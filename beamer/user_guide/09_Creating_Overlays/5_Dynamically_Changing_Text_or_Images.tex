@@ -1,0 +1,63 @@
+\documentclass{beamer}
+
+\graphicspath{{../graphics/}}
+
+\begin{document}
+
+\begin{frame}
+\only<1>{Initial text.}
+\only<2>{Replaced by this on second slide.}
+\only<3>{Replaced again by this on third slide.}
+\end{frame}
+
+%% \begin{overlayarea}{⟨area width⟩}{⟨area height⟩}
+%%   ⟨environment contents⟩
+%% \end{overlayarea}
+%
+% Everything within the environment will be placed in a rectangular area of the
+% specified size. The area will have the same size on all slides of a frame,
+% regardless of its actual contents.
+
+\begin{frame}{overlayarea}
+\begin{overlayarea}{\textwidth}{3cm}
+\only<1>{Some text for the first slide.\\Possibly several lines long.}
+\only<2>{Replacement on the second slide.}
+\end{overlayarea}
+\end{frame}
+
+%% \begin{overprint}[⟨area width⟩]
+%%   ⟨environment contents⟩
+%% \end{overprint}
+
+\begin{overprint}
+  \onslide<1| handout:1>
+    Some text for the first slide.\\
+    Possibly several lines long.
+  \onslide<2| handout:0>
+    Replacement on the second slide. Supressed for handout.
+\end{overprint}
+
+% Use this if each .pdf file contains the complete graphic to be shown.
+
+\begin{frame}
+  \frametitle{The Three Process Stages}
+  
+  \includegraphics<1>{first.pdf}
+  \includegraphics<2>{second.pdf}
+  \includegraphics<3>{third.pdf}
+\end{frame}
+
+% Use this if you have a series of graphics in which each file just contains
+% the additional graphic elements to be shown on the next slide.  Then graphics
+% must also be shown on top of each other.  An easy way to achieve this is to
+% use TeX's \llap command like this:
+
+\begin{frame}
+  \frametitle{The Three Process Stages}
+
+  \includegraphics<1->{first.pdf}%
+  \llap{\includegraphics<2->{second.pdf}}%
+  \llap{\includegraphics<3->{third.pdf}}
+\end{frame}
+
+\end{document}

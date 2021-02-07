@@ -1,0 +1,42 @@
+\documentclass{beamer}
+
+\begin{document}
+
+\begin{frame}
+  \frametitle{A Theorem on Infinite Sets}
+
+  \begin{theorem}<1->
+    There exists an infinite set.
+  \end{theorem}
+
+  \begin{proof}<3->
+    This follows from the axiom of infinity.
+  \end{proof}
+
+  \begin{example}<2->
+    The set of natural numbers is infinite.
+  \end{example}
+\end{frame}
+
+% For each of the basic commands \only, \alt, \visible, \uncover, and \invisible
+% there exists “envi- ronment versions” onlyenv, altenv, visibleenv, uncoverenv,
+% and invisibleenv. Except for altenv and onlyenv, these environments do the
+% same as the commands.
+
+\begin{frame}{onlyenv}
+  This line is always shown.
+  \begin{onlyenv}<2>
+    This line is inserted on slide 2.
+  \end{onlyenv}
+  foo
+\end{frame}
+
+\begin{frame}{altenv}
+  This
+  \begin{altenv}<2>{(}{)}{[}{]}
+    word
+  \end{altenv}
+  is in round brackets on slide 2 and in square brackets on slide 1.
+\end{frame}
+
+\end{document}

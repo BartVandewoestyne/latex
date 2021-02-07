@@ -1,0 +1,128 @@
+\documentclass{beamer}
+
+\begin{document}
+
+% In presentation: text from third slide on
+% In handout: no secodn slide, text should already appear on the second slide.
+% No mode specification means 'beamer' mode.
+\begin{frame}
+\only<3| handout:2>{Some text}
+\end{frame}
+
+\begin{frame}
+\only<article>{This text is shown only in article mode;}
+\end{frame}
+
+%% presentation modes include beamer, trans and handout
+\section<presentation>{This section exists only in the presentation modes}
+\section<article>{This section exists only in the article mode}
+\begin{frame}
+foobar
+\end{frame}
+
+%% Action specifications
+%
+% By default, the following actions are available:
+%   alert
+%   uncover
+%   only
+%   visible
+%   invisible
+
+\begin{frame}{Action specifications}
+\begin{itemize}
+\item foo
+\item<3-| alert@3> Shown from slide 3 on, alerted on slide 3.
+\end{itemize}
+\end{frame}
+
+%% Incremental Specifications
+%
+% Use this if you're tired of writing <1->, <2->, <3->, and so on.
+
+% problem:
+
+\begin{frame}
+\begin{itemize}
+\item<1-> Apple
+\item<2-> Peach
+\item<3-> Plum
+\item<4-> Orange
+\end{itemize}
+\end{frame}
+
+% solution: incremental overlay specifications
+% The + sign gets replaced by a number.
+\begin{frame}{incremental overlay specifications}
+\begin{itemize}
+\item<+-> Apple
+\item<+-> Peach
+\item<+-> Plum
+\item<+-> Orange
+\end{itemize}
+\end{frame}
+
+\begin{frame}{incremental overlay specifications with alert}
+\begin{itemize}
+\item<+-| alert@+> Apple
+\item<+-| alert@+> Peach
+\item<+-| alert@+> Plum
+\item<+-| alert@+> Orange
+\end{itemize}
+\end{frame}
+
+% Even more economically with a default overlay specification:
+
+\begin{frame}{default overlay specification}
+\begin{itemize}[<+-| alert@+>]
+\item Apple
+\item Peach
+\item Plum
+\item Orange
+\end{itemize}
+\end{frame}
+
+%% offset
+
+\begin{frame}
+\frametitle{Method 1}
+\begin{itemize}
+\item<2-> Apple
+\item<3-> Peach
+\item<4-> Plum
+\item<5-> Orange
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Method 2}
+\begin{itemize}[<+(1)->]
+\item Apple
+\item Peach
+\item Plum
+\item Orange
+\end{itemize}
+\end{frame}
+
+%% dot in overlay specification
+
+% Here, the second item is shown at the same time as the first one since it
+% does not update the counter.
+\begin{frame}{dot in overlay specification}
+\begin{itemize}[<+->]
+\item Apple
+\item<.-> Peach
+\item Plum
+\item Orange
+\end{itemize}
+\end{frame}
+
+\begin{frame}{dot in overlay specification}
+\begin{itemize}[<+->]
+\item This is \alert<.>{important}.
+\item We want to \alert<.>{highlight} this and \alert<.>{this}.
+\item What is the \alert<.>{matrix}?
+\end{itemize}
+\end{frame}
+
+\end{document}

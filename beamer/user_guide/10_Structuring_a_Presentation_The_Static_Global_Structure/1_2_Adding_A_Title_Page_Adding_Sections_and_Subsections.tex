@@ -1,0 +1,79 @@
+\documentclass{beamer}
+%\documentclass[usepdftitle=false]{beamer}
+
+\graphicspath{{../graphics/}}
+
+\title{The Beamer Class}
+\title[Short Version]{A Very Long Title\\Over Several Lines}
+\subtitle{An easily paced introduction with many examples.}
+
+\institute[Universities of Rijeka and Berlin]{
+  \inst{1}Department of Informatics\\
+  University of Rijeka
+  \and
+  \inst{2}Fakult\"at f\"ur Elektrotechnik und Informatik\\
+  Technical University of Berlin}
+
+\author[Hemaspaandra et al.]{L. Hemaspaandra\inst{1} \and T. Tantau\inst{2}}
+
+\date{\today}
+\date[STACS 2003]{STACS Conference, 2003}
+
+\pgfdeclareimage{titlegraphic}{titlegraphic}
+\titlegraphic{\pgfuseimage{titlegraphic}}
+
+\subject{This is the subject}
+\keywords{keyword1, keyword2, keyword3}
+
+\AtBeginSection[] % Do nothing for \section*
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\AtBeginSubsection[] % Do nothing for \subsection*
+{
+\begin{frame}<beamer>
+\frametitle{Outline}
+\tableofcontents[currentsection,currentsubsection]
+\end{frame}
+}
+
+\begin{document}
+
+\frame{\titlepage}
+\frame[plain]{\titlepage}
+
+\section[Summary]{Summary of Main Results}
+\section<presentation>[Results]{Results on the Main Problem}
+\section<article>{Results on the Main Problem}
+\section*{Outline}
+\section<beamer>*{Outline}
+\subsection[Applications]{Applications to the Reduction of Pollution}
+
+\section{Summary}
+
+  \frame{This frame is not shown in the navigation bar}
+
+  \subsection*{}
+
+  \frame{This frame is shown in the navigation bar, but no subsection
+    entry is shown.}
+
+  \subsection*{A subsection}
+
+  \frame{Normal frame, shown in navigation bar. The subsection name is
+    also shown in the navigation bar, but not in the table of contents.}
+
+\frame{\tableofcontents}
+
+% STYLE ADVISE: do not use subsubsections
+\subsubsection[Applications]{Applications to the Reduction of Pollution}
+
+\section{A section}
+\frame{\sectionpage}
+\frame{Some text.}
+
+\end{document}

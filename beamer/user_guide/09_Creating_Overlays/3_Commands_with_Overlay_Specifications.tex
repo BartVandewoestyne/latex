@@ -1,0 +1,187 @@
+\documentclass{beamer}
+
+\begin{document}
+
+% For the following commands, adding an overlay specification causes the
+% command to be simply ignored on slides that are not included in the
+% specification:
+%
+%   \textbf, \textit, \textsl, \textrm, \textsf, \color,
+%   \alert, \structure
+
+\begin{frame}{color}
+\color<2-3>[rgb]{1,0,0} This text is red on slides 2 and 3, otherwise black.
+\end{frame}
+
+%% \onslide (without {text})
+%% On non-specified slides, the text still occupies space.
+%% Effect transcends block groups.
+%% Has different effect inside an overprint environment.
+%% If the modifier is +, hidden text will not be treated as covered, but as
+%% invisible.
+
+\begin{frame}{onslide without text}
+  Shown on first slide.
+  \onslide<2-3>
+  Shown on second and third slide.
+  \begin{itemize}
+  \item
+    Still shown on the second and third slide.
+  \onslide+<4->
+  \item
+    Shown from slide 4 on.
+  \end{itemize}
+  Shown from slide 4 on.
+  \onslide
+  Shown on all slides.
+\end{frame}
+
+%% \onslide (with {text})
+%% \onslide{text}  -> mapped to \uncover
+%% \onslide+{text} -> mapped to \visible
+%% \onslide*{text} -> mapped to \only
+\begin{frame}{onslide with text}
+  \onslide<1>{Same effect as the following command.}
+  \uncover<1>{Same effect as the previous command.}
+
+  \onslide+<2>{Same effect as the following command.}
+  \visible<2>{Same effect as the previous command.}
+
+  \onslide*<3>{Same effect as the following command.}
+  \only<3>{Same effect as the previous command.}
+\end{frame}
+
+%% \only<⟨overlay specification⟩>{⟨text⟩}<⟨overlay specification⟩>
+%
+% If either ⟨overlay specification⟩ is present (though only one may be
+% present), the ⟨text⟩ is inserted only into the specified slides. For other
+% slides, the text is simply thrown away. In particular, it occupies no space.
+
+\begin{frame}{only}
+foo
+\only<3->{Text inserted from slide 3 on.}
+bar
+\end{frame}
+
+% Since the overlay specification may also be given after the text, you can
+% often use \only to make other commands overlay specification-aware in a
+% simple manner:
+
+\newcommand{\myblue}{\only{\color{blue}}}
+\begin{frame}{only}
+\myblue<2> This text is blue only on slide 2.
+\end{frame}
+
+%% \uncover<⟨overlay specification⟩>{⟨text⟩}
+%
+% If the ⟨overlay specification⟩ is present, the ⟨text⟩ is shown (“uncovered”)
+% only on the specified slides. On other slides, the text still occupies space
+% and it is still typeset, but it is not shown or only shown as if transparent.
+% For details on how to specify whether the text is invisible or just
+% transparent see Section 17.6.
+
+\begin{frame}{uncover}
+foo
+\uncover<3->{Text shown from slide 3 on.}
+bar
+\end{frame}
+
+%% \visible<⟨overlay specification⟩>{⟨text⟩}
+%
+% This command does almost the same as \uncover. The only difference is that
+% if the text is not shown, it is never shown in a transparent way, but rather
+% it is not shown at all. Thus, for this command the transparency settings
+% have no effect.
+
+\begin{frame}{visible}
+foo
+\visible<2->{Text shown from slide 2 on.}
+bar
+\end{frame}
+
+%% \invisible<⟨overlay specification⟩>{⟨text⟩}
+%
+% This command is the opposite of \visible.
+
+\begin{frame}{invisible}
+foo
+\invisible<-2>{Text shown from slide 3 on.}
+bar
+\end{frame}
+
+%% \alt<⟨overlay specification⟩>{⟨default text⟩}{⟨alternative text⟩}<⟨overlay specification⟩>
+%
+% Only one ⟨overlay specification⟩ may be given. The default text is shown on
+% the specified slides, otherwise the alternative text. The specification must
+% always be present.
+
+\begin{frame}{alt}
+foo
+\alt<2>{On Slide 2}{Not on slide 2.}
+bar
+\end{frame}
+
+%% \temporal<⟨overlay specification⟩>{⟨before slide text⟩}{⟨default text⟩}{⟨after slide text⟩}
+%
+% This command alternates between three different texts, depending on whether
+% the current slide is temporally before the specified slides, is one of the
+% specified slides, or comes after them. If the ⟨overlay specification⟩ is not
+% an interval (that is, if it has a “hole”), the “hole” is considered to be
+% part of the before slides.
+
+\begin{frame}{temporal}
+foo
+\temporal<3-4>{Shown on 1, 2}{Shown on 3, 4}{Shown 5, 6, 7, ...}
+bar
+\temporal<3,5>{Shown on 1, 2, 4}{Shown on 3, 5}{Shown 6, 7, 8, ...}
+baz
+\end{frame}
+
+\def\colorize<#1>{%
+  \temporal<#1>{\color{red!50}}{\color{black}}{\color{black!50}}}
+
+\begin{frame}
+  \begin{itemize}
+    \colorize<1> \item First item.
+    \colorize<2> \item Second item.
+    \colorize<3> \item Third item.
+    \colorize<4> \item Fourth item.
+  \end{itemize}
+\end{frame}
+
+%% \item<⟨alert specification⟩>[⟨item label⟩]<⟨alert specification⟩>
+%
+% Only one ⟨alert specification⟩ may be given. The effect of ⟨alert
+% specification⟩ is described in Section 9.6.3.
+
+\begin{frame}{item}
+  \begin{itemize}
+  \item<1-> First point, shown on all slides.
+  \item<2-> Second point, shown on slide 2 and later.
+  \item<2-> Third point, also shown on slide 2 and later.
+  \item<3-> Fourth point, shown on slide 3.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{item}
+  \begin{enumerate}
+  \item<3-| alert@3>[0.] A zeroth point, shown at the very end.
+  \item<1-| alert@1> The first and main point.
+  \item<2-| alert@2> The second point.
+  \end{enumerate}
+\end{frame}
+
+%% \label<⟨overlay specification⟩>{⟨label name⟩}
+
+\begin{frame}{label}
+  \begin{align}
+    a &= b + c   \label{first}\\ % no specification needed
+    c &= d + e
+  \end{align}    \label{second}\\% no specification needed
+
+  Blah blah, \uncover<2>{more blah blah.}
+
+  \only<3>{Specification is needed now.\label<3>{mylabel}}
+\end{frame}
+
+\end{document}

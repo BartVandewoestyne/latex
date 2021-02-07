@@ -1,0 +1,23 @@
+\documentclass{beamer}
+
+\begin{document}
+
+\begin{frame}
+\textbf{This line is bold on all three slides.}
+\textbf<2>{This line is bold only on the second slide.}
+\textbf<3>{This line is bold only on the third slide.}
+\end{frame}
+
+% The parameter of 'only' is thrown away on slides that are not mentioned.
+\begin{frame}
+\only<1>{This line is inserted only on slide 1.}
+\only<2>{This line is inserted only on slide 2.}
+\end{frame}
+
+% Possible overlay specifications:
+%   1,3,4
+%   2-5
+%   3-
+%   -5
+
+\end{document}
